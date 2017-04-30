@@ -12,13 +12,11 @@ import redis.clients.jedis.JedisPool;
  */
 public class RedisDao {
     private final JedisPool jedisPool;
+    private RuntimeSchema<Seckill> schema = RuntimeSchema.createFrom(Seckill.class);
 
     public RedisDao(String ip, int port) {
         jedisPool = new JedisPool(ip, port);
     }
-
-    private RuntimeSchema<Seckill> schema = RuntimeSchema.createFrom(Seckill.class);
-
 
     public Seckill getSeckill(long seckillId) {
         //redis操作逻辑
@@ -32,16 +30,16 @@ public class RedisDao {
                 byte[] bytes = jedis.get(key.getBytes());
                 //缓存重获取到
                 if (bytes != null) {
-                    Seckill seckill=schema.newMessage();
-                    ProtostuffIOUtil.mergeFrom(bytes,seckill,schema);
+                    Seckill seckill = schema.newMessage();
+                    ProtostuffIOUtil.mergeFrom(bytes, seckill, schema);
                     //seckill被反序列化
 
                     return seckill;
                 }
-            }finally {
+            } finally {
                 jedis.close();
             }
-        }catch (Exception e) {
+        } catch (Exception e) {
 
         }
         return null;
@@ -56,13 +54,13 @@ public class RedisDao {
                         LinkedBuffer.allocate(LinkedBuffer.DEFAULT_BUFFER_SIZE));
                 //超时缓存
                 int timeout = 60 * 60;//1小时
-                String result = jedis.setex(key.getBytes(),timeout,bytes);
+                String result = jedis.setex(key.getBytes(), timeout, bytes);
 
                 return result;
-            }finally {
+            } finally {
                 jedis.close();
             }
-        }catch (Exception e) {
+        } catch (Exception e) {
 
         }
 

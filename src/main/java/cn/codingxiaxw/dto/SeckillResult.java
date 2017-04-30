@@ -1,9 +1,12 @@
 package cn.codingxiaxw.dto;
 
+import lombok.Data;
+
 /**
  * Created by codingBoy on 16/11/28.
  */
 //将所有的ajax请求返回类型，全部封装成json数据
+@Data
 public class SeckillResult<T> {
 
     //请求是否成功
@@ -21,27 +24,4 @@ public class SeckillResult<T> {
         this.error = error;
     }
 
-    public boolean isSuccess() {
-        return success;
-    }
-
-    public void setSuccess(boolean success) {
-        this.success = success;
-    }
-
-    public T getData() {
-        return data;
-    }
-
-    public void setData(T data) {
-        this.data = data;
-    }
-
-    public String getError() {
-        return error;
-    }
-
-    public void setError(String error) {
-        this.error = error;
-    }
 }

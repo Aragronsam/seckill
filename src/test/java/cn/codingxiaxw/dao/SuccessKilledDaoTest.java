@@ -8,8 +8,6 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import javax.annotation.Resource;
 
-import static org.junit.Assert.*;
-
 /**
  * Created by codingBoy on 16/11/27.
  */
@@ -24,17 +22,17 @@ public class SuccessKilledDaoTest {
     @Test
     public void insertSuccessKilled() throws Exception {
 
-        long seckillId=1000L;
-        long userPhone=13476191877L;
-        int insertCount=successKilledDao.insertSuccessKilled(seckillId,userPhone);
-        System.out.println("insertCount="+insertCount);
+        long seckillId = 1000L;
+        long userPhone = 13476191877L;
+        int insertCount = successKilledDao.insertSuccessKilled(seckillId, userPhone);
+        System.out.println("insertCount=" + insertCount);
     }
 
     @Test
     public void queryByIdWithSeckill() throws Exception {
-        long seckillId=1000L;
-        long userPhone=13476191877L;
-        SuccessKilled successKilled=successKilledDao.queryByIdWithSeckill(seckillId,userPhone);
+        long seckillId = 1000L;
+        long userPhone = 13476191877L;
+        SuccessKilled successKilled = successKilledDao.queryByIdWithSeckill(seckillId, userPhone);
         System.out.println(successKilled);
         System.out.println(successKilled.getSeckill());
 

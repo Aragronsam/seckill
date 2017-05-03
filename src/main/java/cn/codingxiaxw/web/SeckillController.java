@@ -52,10 +52,10 @@ public class SeckillController {
 
     //ajax ,json暴露秒杀接口的方法
     @RequestMapping(value = "/{seckillId}/exposer",
-            method = RequestMethod.POST,
+            method = RequestMethod.GET,
             produces = {"application/json;charset=UTF-8"})
     @ResponseBody
-    public SeckillResult<Exposer> exposer(Long seckillId) {
+    public SeckillResult<Exposer> exposer(@PathVariable("seckillId") Long seckillId) {
         SeckillResult<Exposer> result;
         try {
             Exposer exposer = seckillService.exportSeckillUrl(seckillId);

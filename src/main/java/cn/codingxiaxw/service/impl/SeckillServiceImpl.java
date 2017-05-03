@@ -12,8 +12,7 @@ import cn.codingxiaxw.exception.RepeatKillException;
 import cn.codingxiaxw.exception.SeckillCloseException;
 import cn.codingxiaxw.exception.SeckillException;
 import cn.codingxiaxw.service.SeckillService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -27,11 +26,10 @@ import java.util.List;
  */
 //@Component @Service @Dao @Controller
 @Service
+@Slf4j
 public class SeckillServiceImpl implements SeckillService {
     //加入一个混淆字符串(秒杀接口)的salt，为了我避免用户猜出我们的md5值，值任意给，越复杂越好
     private final String salt = "shsdssljdd'l.";
-    //日志对象
-    private Logger logger = LoggerFactory.getLogger(this.getClass());
     //注入Service依赖
     @Autowired //@Resource
     private SeckillDao seckillDao;
@@ -134,7 +132,7 @@ public class SeckillServiceImpl implements SeckillService {
         } catch (RepeatKillException e2) {
             throw e2;
         } catch (Exception e) {
-            logger.error(e.getMessage(), e);
+            log.error(e.getMessage(), e);
             //所以编译期异常转化为运行期异常
             throw new SeckillException("seckill inner error :" + e.getMessage());
         }

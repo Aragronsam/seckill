@@ -17,7 +17,10 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * Created by codingBoy on 16/11/28.
+ * 功能描述:
+ * @Author: Aragron
+ * @Create: 2017-05-04-10:48
+ * @Home: http://aragron.com
  */
 @Component
 @RequestMapping("/seckill")//url:模块/资源/{}/细分
